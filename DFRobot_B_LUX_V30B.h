@@ -32,6 +32,8 @@
 #define DBG(...)
 #endif
 
+#define DFRobot_B_LUX_V30_IIC_TIMEOUT 2000 //timeout of blocking operations in ms (0 = disabled)
+
 #define DFRobot_B_LUX_V30_IIC_Addr  0x94   //the address of IIC
 
 #define DFRobot_B_LUX_V30_DataReg        0x00   //the address of the data register
