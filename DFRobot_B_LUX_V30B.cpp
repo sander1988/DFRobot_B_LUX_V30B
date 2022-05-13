@@ -30,8 +30,8 @@ void DFRobot_B_LUX_V30B::begin()
   digitalWrite(_cEN,LOW);
   delay(1000);
   digitalWrite(_cEN,HIGH);
-  while(lightStrengthLux()<=0);
-  
+  unsigned long startTime = 0;
+  while(lightStrengthLux() <= 0 && (DFRobot_B_LUX_V30_IIC_TIMEOUT == 0 || (millis() - startTime) < DFRobot_B_LUX_V30_IIC_TIMEOUT));  
 }
 uint8_t DFRobot_B_LUX_V30B::readMode(void)
 {
@@ -57,7 +57,8 @@ uint8_t DFRobot_B_LUX_V30B::readMode(void)
   mode=iicReadByte();
   iicSendAck(1);
   iicStopBit();
-  while(lightStrengthLux()<=0);
+  unsigned long startTime = 0;
+  while(lightStrengthLux() <= 0 && (DFRobot_B_LUX_V30_IIC_TIMEOUT == 0 || (millis() - startTime) < DFRobot_B_LUX_V30_IIC_TIMEOUT));
   return mode;
 }
 uint8_t DFRobot_B_LUX_V30B::setMode(uint8_t isManualMode,uint8_t isCDR,uint8_t isTime)
